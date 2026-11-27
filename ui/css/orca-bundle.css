@@ -871,6 +871,8 @@ body { background: var(--g-panel); color: var(--g-text); overflow: hidden; }
   writing-mode: vertical-rl; transform: rotate(180deg); padding: 6px 4px; border: 0; border-radius: var(--g-radius);
   background: transparent; cursor: pointer; white-space: nowrap;
 }
+/* CJK glyphs stay upright in vertical-rl; the 180° turn (for Latin letters) would flip and reverse them. */
+html[lang^="zh"] .gl-bstrip-label { transform: none; }
 .gl-bstrip-label:hover { background: var(--g-hover); }
 
 /* ---------------------------------------------------------------- Commits toolbar */

@@ -17,6 +17,11 @@
     'Double-click a changed file in the Git Log or Commit panel, or open a history or a comparison there, to see it here.':
       'Burada görmek için Git Log ya da Commit panelinde değişen bir dosyaya çift tıkla ya da oradan bir geçmiş veya karşılaştırma aç.',
   });
+  Git.addZH({
+    'Nothing to show yet': '暂无可显示的内容',
+    'Double-click a changed file in the Git Log or Commit panel, or open a history or a comparison there, to see it here.':
+      '要在此处查看，请在 Git 日志或提交面板中双击更改的文件，或在其中打开历史记录或比较。',
+  });
   Git.views = Git.views || {};
   /** The folder the worker files this tab's opener under: the workspace's own, also while a worktree is shown. */
   const home = () => (Git.worktrees && Git.worktrees.home()) || Git.repo.root;

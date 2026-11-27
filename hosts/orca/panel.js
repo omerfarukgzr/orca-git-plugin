@@ -122,12 +122,33 @@
       'In Orca, open Settings → Plugins, choose ⋯ → Refresh catalogs, then press Update on {0}.':
         'Orca\'da Settings → Plugins sayfasını aç, ⋯ → Refresh catalogs\'u seç, sonra {0} satırında Update\'e bas.',
     });
+    Git.addZH({
+      'No workspace is focused in Orca.': 'Orca 中没有聚焦的工作区。',
+      'The workspace {0} is on another host ({1}). {2} opens local repositories only.': '工作区 {0} 位于另一台主机（{1}）上。{2} 仅打开本地仓库。',
+      'Orca does not list the folder of the workspace {0}.': 'Orca 的列表中没有工作区 {0} 的文件夹。',
+      'Several workspaces are called {0}; {1} cannot tell which folder is meant.': '有多个工作区名为 {0}；{1} 无法判断指的是哪个文件夹。',
+      'Orca did not tell which workspace is focused ({0}).': 'Orca 未告知哪个工作区处于聚焦状态（{0}）。',
+      'Cannot reach the {0} worker of Orca.': '无法连接到 Orca 的 {0} 工作进程。',
+      'Which project are you in?': '你在哪个项目中？',
+      'Orca has {1} workspaces called "{0}" and does not tell plugins which one is open. Pick the project you are working in now. It is remembered; the project name at the top of the panel changes it.':
+        'Orca 中有 {1} 个名为“{0}”的工作区，且不会告诉插件当前打开的是哪一个。请选择你现在正在处理的项目。选择会被记住；点击面板顶部的项目名称可更改。',
+      'Shown project. Click to pick another one.': '当前显示的项目。点击以选择其他项目。',
+      '{0} opened': '已打开 {0}',
+      'Orca has {1} workspaces called {0} and does not tell which one is focused. The one picked last time was opened.':
+        'Orca 中有 {1} 个名为 {0} 的工作区，且不会告知哪个处于聚焦状态。已打开上次选择的工作区。',
+      'Change…': '更改…',
+      'Orca asks first: choose Open.': 'Orca 会先询问：请选择“打开”。',
+      'In Orca, open Settings → Plugins, choose ⋯ → Refresh catalogs, then press Update on {0}.':
+        '在 Orca 中打开“设置 → 插件”，选择 ⋯ → 刷新目录，然后在 {0} 一行点击“更新”。',
+    });
     const t = (...a) => Git.t(...a);
     let pictures = false;
     try {
       const hello = await Git.orca.start(view);
       // the plugin's version, for the Options menu's last row (ui/git/options.js)
       if (hello && hello.about && typeof hello.about.version === 'string') Git.host.version = hello.about.version.slice(0, 40);
+      // With no explicit choice, use the plugin's language that matches Orca's interface language.
+      if (Git.applyLocaleDefault) { try { Git.applyLocaleDefault(window.orca && window.orca.locale); } catch (e) { /* keep default */ } }
       // the worker can put a report's screenshot on the clipboard (hosts/orca/picture.mjs: macOS)
       pictures = !!(hello && hello.about && hello.about.pictures === true);
     } catch (e) { say(t('Cannot reach the {0} worker of Orca.', PRODUCT)); return; }

@@ -50,7 +50,7 @@ Needs Orca 1.4.248 or newer and `git` on the `PATH`. Developed and tested on mac
 - **Updates**: when a newer version is out, the ⋮ button carries a dot and its menu a row "Update to …". When your
   version has a serious problem that a newer one fixes, a dialog asks you to update, at most once a day. Nothing is
   ever locked: "Later" closes it and the panels work as before.
-- English by default; Turkish can be chosen in the ⋮ menu at the top right of each panel, which also names the
+- English by default (or follows Orca's interface language when no choice was made); Türkçe and 简体中文 can be chosen in the ⋮ menu at the top right of each panel, which also names the
   installed version.
 - **Your editor font**: diffs, the file view with blame and the Console use the font family, size and line height of
   Orca's file editor (Settings, editor zoom included) and follow it when it changes (Orca 1.4.256 or newer; older
