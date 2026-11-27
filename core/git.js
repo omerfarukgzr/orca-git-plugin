@@ -34,6 +34,7 @@
 // call settles even when something still holds the output pipes (200 ms after a kill, 2 s after a normal exit).
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { EngineError } from './errors.js';
 import { PRODUCT } from './product.js';
@@ -44,6 +45,9 @@ export const GIT_CONFIG_ARGS = Object.freeze([
   '-c', 'i18n.logOutputEncoding=UTF-8',
   '-c', 'log.showSignature=false',
   '-c', 'color.ui=false',
+  // Windows OpenSSH in the Orca plugin host can exit silently on Git's SSH transport; Git's bundled
+  // ssh.exe resolves ~/.ssh correctly there. Leave other platforms to their own config.
+  ...(process.platform === 'win32' ? ['-c', 'core.sshCommand=ssh'] : []),
 ]);
 
 export const BASE_ENV = Object.freeze({
@@ -178,7 +182,15 @@ export function runGit(root, args, opts = {}) {
   checkRoot(root);
   if (!Array.isArray(args) || args.some((a) => typeof a !== 'string')) throw new EngineError('internal', 'runGit: args must be an array of strings');
   const pre = [];
-  const env = { ...cleanEnv(), ...BASE_ENV, ...(opts.env || {}) };
+  const home = os.homedir();
+  const appData = process.env.APPDATA || path.join(home, 'AppData', 'Roaming');
+  const localAppData = process.env.LOCALAPPDATA || path.join(home, 'AppData', 'Local');
+  const env = { ...cleanEnv(), ...BASE_ENV, HOME: home, USERPROFILE: home, APPDATA: appData, LOCALAPPDATA: localAppData };
+  for (const k of ['HTTP_PROXY', 'HTTPS_PROXY', 'NO_PROXY', 'ALL_PROXY', 'http_proxy', 'https_proxy', 'no_proxy', 'all_proxy']) {
+    const v = process.env[k];
+    if (v !== undefined && v !== '') env[k] = v;
+  }
+  Object.assign(env, opts.env || {});
   if (opts.optionalLocks === false) { pre.push('--no-optional-locks'); env.GIT_OPTIONAL_LOCKS = '0'; }
   const full = pre.concat(GIT_CONFIG_ARGS, args);
   const command = displayCommand(full);
