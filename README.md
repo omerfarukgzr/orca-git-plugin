@@ -52,6 +52,10 @@ Needs Orca 1.4.248 or newer and `git` on the `PATH`. Developed and tested on mac
   ever locked: "Later" closes it and the panels work as before.
 - English by default; Turkish can be chosen in the ⋮ menu at the top right of each panel, which also names the
   installed version.
+- **Light and dark, in two skins**: follow Orca's own light or dark interface, or pick one from the Appearance group
+  in the ⋮ menu (settings in the full Git window): Default Dark, Default Light, IntelliJ Dark, IntelliJ Light.
+  "Follow Orca" is the default and changes with Orca's theme. The IntelliJ skins use IntelliJ's New UI palettes; the
+  Default skins keep this plugin's warm surfaces in both schemes.
 - **Your editor font**: diffs, the file view with blame and the Console use the font family, size and line height of
   Orca's file editor (Settings, editor zoom included) and follow it when it changes (Orca 1.4.256 or newer; older
   versions keep the plugin's own font).

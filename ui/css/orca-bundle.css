@@ -26,6 +26,10 @@
   --white: #ffffff;
   --white-rgb: 255, 255, 255;
   --black-rgb: 0, 0, 0;
+  /* The tint laid over a surface for hover, pressed and hairline states, and the ink under a shadow: white-on-dark
+     in the dark schemes, ink-on-light in the light ones. `--white` stays the text colour on an accent fill. */
+  --overlay-rgb: 255, 255, 255;
+  --shadow-rgb: 0, 0, 0;
 
   /* Lines and state fills */
   --line: rgba(255, 255, 255, .07);        /* the top line of a menu's footer */
@@ -118,6 +122,184 @@
   --term-dim: #8b8b8b;
   --native-menu: rgba(42, 42, 42, .94);    /* a native context menu imitation (file tree and editor tab) */
 }
+
+/* The light scheme. A scheme is not a family: `data-git-skin` keeps the family's geometry and fonts, this block
+   changes only what a light surface needs. IntelliJ Light: the New UI Light palette of
+   platform/platform-resources/src/themes/expUI/expUI_light.theme.json (Gray1-14, Blue1-13). */
+:root[data-git-light] {
+  color-scheme: light;
+
+  /* Surfaces and text */
+  --sidebar: #FFFFFF;                      /* menus, popups, confirmation cards, the file panel */
+  --stage: #FFFFFF;                        /* the stage, text fields */
+  --sh-group: #FFFFFF;                     /* grouped rows inside a panel, secondary buttons */
+  --cv-seg-on: #F7F8FA;                    /* raised: a usage bar's track, an avatar */
+  --well: #F7F8FA;                         /* a sunken name field */
+  --text: #000000;
+  --text-rgb: 0, 0, 0;
+  --dim: rgba(0, 0, 0, .74);
+  --faint: rgba(0, 0, 0, .42);
+  --cv-dim: #6C707E;                       /* second lines, descriptions */
+  --shell-text: #6C707E;                   /* muted: section heads, hints */
+  --tab-text: #5A5D6B;
+  --quiet: #818594;                        /* upper-case section titles, arrows */
+  --cv-faint: #818594;
+  --app-ic: #6C707E;                       /* menu icons, initials */
+  --hover: rgba(0, 0, 0, .04);
+  --placeholder: rgba(0, 0, 0, .48);       /* a text field's placeholder */
+  --white: #ffffff;
+  --white-rgb: 255, 255, 255;
+  --black-rgb: 0, 0, 0;
+  --overlay-rgb: 0, 0, 0;
+  --shadow-rgb: 0, 0, 0;
+
+  /* Lines and state fills */
+  --line: #EBECF0;                         /* the top line of a menu's footer */
+  --cv-line: #EBECF0;                      /* separators, button edges */
+  --col-line: #EBECF0;                     /* the column edge of menus and the file panel */
+  --sh-press: #EDF3FF;                     /* a hovered row / the row chosen with the keyboard */
+  --soft-blue: 53, 116, 240;
+  --select: #D4E2FF;                       /* a selected file */
+
+  /* Accents */
+  --accent: #3574F0;                       /* keyboard focus */
+  --sh-red: #DB3B4B;                       /* danger */
+  --cv-add: #208A3C;                       /* success */
+  --warning: #C27D04;
+  --usage-high: #DF9303;
+  --in-use: #315FBD;
+  --update-dot: #3574F0;
+  --update-text: #2E55A3;
+  --update-button: #3574F0;
+  --system-orange: #C27D04;                /* a message in a menu, warning text */
+
+  /* Activity states */
+  --claude: #D97757;
+  --orange: #E56D17;                       /* working */
+  --blue: #3369D6;                         /* waiting */
+  --green: #1F8039;                        /* done */
+  --red: #CC3645;                          /* error */
+
+  /* Branch rows */
+  --branch-icon: #5A5D6B;
+  --branch-tab: #494B57;
+  --branch-shell-tab: #6C707E;
+  --branch-hint: #818594;
+  --branch-badge: #DFE1E5;
+
+  /* Window buttons */
+  --close-button: rgb(255, 94, 87);
+  --minimize-button: rgb(255, 189, 46);
+  --zoom-button: rgb(41, 201, 64);
+
+  /* The editor tab strip: the VS Code Light+ workbench colors. */
+  --vsc-tabs-bg: var(--sidebar);           /* editorGroupHeader.tabsBackground ?? sidebar */
+  --vsc-tab-active-bg: var(--stage);       /* tab.activeBackground ?? stage */
+  --vsc-tab-inactive-bg: transparent;      /* tab.inactiveBackground ?? clear */
+  --vsc-tab-hover-bg: var(--sh-press);     /* tab.hoverBackground ?? press */
+  --vsc-tab-active-fg: var(--text);        /* tab.activeForeground ?? text */
+  --vsc-tab-inactive-fg: var(--tab-text);  /* tab.inactiveForeground ?? tab text */
+  --vsc-tab-border: var(--cv-line);        /* tab.border ?? line */
+
+  /* Code: VS Code Light+ ("--code-*") */
+  --code-bg: #FFFFFF;
+  --code-fg: #000000;
+  --code-gutter: #237893;
+  --code-keyword: #0000FF;
+  --code-control: #AF00DB;
+  --code-string: #A31515;
+  --code-number: #098658;
+  --code-comment: #008000;
+  --code-function: #795E26;
+  --code-type: #267F99;
+  --code-variable: #001080;
+
+  /* The prototype's stand-ins */
+  --desk: #000000;                         /* outside the window */
+  --win-shadow: rgba(0, 0, 0, .18);
+  --chrome-frame: #F2F2F2;
+  --chrome-bar: #F7F7F7;
+  --chrome-field: #FFFFFF;
+  --chrome-text: #202020;
+  --chrome-dim: #616161;
+  --term-bg: #FFFFFF;
+  --term-bar: #F2F2F2;
+  --term-text: #202020;
+  --term-dim: #6C707E;
+  --native-menu: rgba(255, 255, 255, .94);  /* a native context menu imitation (file tree and editor tab) */
+}
+
+/* Default Light: the warm palette of the Default family, derived from its dark values (a warm paper white, ink
+   text, the same blue accent). Same scheme, different family. */
+:root[data-git-light][data-git-skin="default"], :root[data-git-light]:not([data-git-skin]) {
+  --sidebar: #FBF9F6;                      /* menus, popups, confirmation cards, the file panel */
+  --stage: #FFFFFF;                        /* the stage, text fields */
+  --sh-group: #E9E6DF;                     /* grouped rows inside a panel, secondary buttons */
+  --cv-seg-on: #E9E6DF;                    /* raised: a usage bar's track, an avatar */
+  --well: #F5F3EF;                         /* a sunken name field */
+  --text: #1C1B19;
+  --text-rgb: 28, 27, 25;
+  --dim: rgba(28, 27, 25, .74);
+  --faint: rgba(28, 27, 25, .42);
+  --cv-dim: #6B6A66;                       /* second lines, descriptions */
+  --shell-text: #6B6A66;                   /* muted: section heads, hints */
+  --tab-text: #55534E;
+  --quiet: #7D7B75;                        /* upper-case section titles, arrows */
+  --cv-faint: #7D7B75;
+  --app-ic: #5E5C57;                       /* menu icons, initials */
+  --hover: rgba(28, 27, 25, .05);
+  --placeholder: rgba(28, 27, 25, .48);    /* a text field's placeholder */
+  --overlay-rgb: 28, 27, 25;
+  --shadow-rgb: 28, 27, 25;
+
+  /* Lines and state fills */
+  --line: #E6E2DA;                         /* the top line of a menu's footer */
+  --cv-line: #E6E2DA;                      /* separators, button edges */
+  --col-line: #E6E2DA;                     /* the column edge of menus and the file panel */
+  --sh-press: #EFEBE4;                     /* a hovered row / the row chosen with the keyboard */
+  --soft-blue: 10, 132, 255;
+  --select: rgba(10, 132, 255, .16);       /* a selected file */
+
+  /* Accents */
+  --accent: #0A84FF;                       /* keyboard focus */
+  --sh-red: #D92D20;                       /* danger */
+  --cv-add: #1F8A4C;                       /* success */
+  --warning: #C2410C;
+  --usage-high: #B7791F;
+  --in-use: #0066CC;
+  --update-dot: #0A84FF;
+  --update-text: #1D4ED8;
+  --update-button: #0A84FF;
+  --system-orange: #C2410C;
+
+  /* Branch rows */
+  --branch-icon: #55534E;
+  --branch-tab: #44423E;
+  --branch-shell-tab: #6B6A66;
+  --branch-hint: #7D7B75;
+  --branch-badge: #E0DCD4;
+
+  /* The editor tab strip: VS Code Light+ workbench colors on the warm surfaces. */
+  --vsc-tabs-bg: var(--sidebar);
+  --vsc-tab-active-bg: var(--stage);
+  --vsc-tab-hover-bg: var(--sh-press);
+
+  /* Code: VS Code Light+ */
+  --code-bg: #FFFFFF;
+  --code-fg: #000000;
+  --code-gutter: #237893;
+  --code-keyword: #0000FF;
+  --code-control: #AF00DB;
+  --code-string: #A31515;
+  --code-number: #098658;
+  --code-comment: #008000;
+  --code-function: #795E26;
+  --code-type: #267F99;
+  --code-variable: #001080;
+
+  --win-shadow: rgba(28, 27, 25, .16);
+  --native-menu: rgba(251, 249, 246, .94);
+}
 /* ==== css/shell.css ==== */
 /* The shell parts the Git UI needs, copied unchanged from the approved prototype's shell.css (each rule says which
    native view it measures). Colors: tokens.css.
@@ -139,7 +321,7 @@
 /* VStack(spacing: 0) .padding(5) .frame(width:) Theme.sidebar, corner 14, edge --cv-line; appears in 0.12 s */
 .cmenu {
   position: absolute; padding: 5px; border-radius: var(--menu-radius); background: var(--sidebar); pointer-events: auto;
-  box-shadow: inset 0 0 0 1px var(--cv-line), 0 0 0 .5px rgba(var(--black-rgb), .55), 0 10px 32px var(--win-shadow), 0 2px 6px rgba(var(--black-rgb), .25);
+  box-shadow: inset 0 0 0 1px var(--cv-line), 0 0 0 .5px rgba(var(--shadow-rgb), .55), 0 10px 32px var(--win-shadow), 0 2px 6px rgba(var(--shadow-rgb), .25);
   animation: cmenu-in .12s linear both; outline: none; cursor: default; -webkit-user-select: none; user-select: none;
 }
 @keyframes cmenu-in { from { opacity: 0; } to { opacity: 1; } }
@@ -161,10 +343,10 @@
 .cm-head { display: flex; align-items: flex-end; height: 24px; padding: 0 9px; }
 .cm-head span { font-weight: 600; letter-spacing: calc(.44px - .0012em); color: var(--shell-text); }
 /* NSMenu look (the file tree's and the editor tab's context menus are SwiftUI .contextMenu) */
-.cmenu.native { padding: 5px; border-radius: 8px; background: var(--native-menu); -webkit-backdrop-filter: blur(30px) saturate(1.6); backdrop-filter: blur(30px) saturate(1.6); box-shadow: inset 0 0 0 .5px rgba(var(--white-rgb), .22), 0 0 0 .5px rgba(var(--black-rgb), .7), 0 10px 30px rgba(var(--black-rgb), .4); animation: none; }
+.cmenu.native { padding: 5px; border-radius: 8px; background: var(--native-menu); -webkit-backdrop-filter: blur(30px) saturate(1.6); backdrop-filter: blur(30px) saturate(1.6); box-shadow: inset 0 0 0 .5px rgba(var(--overlay-rgb), .22), 0 0 0 .5px rgba(var(--shadow-rgb), .7), 0 10px 30px rgba(var(--shadow-rgb), .4); animation: none; }
 .cmenu.native .cm-row { height: 22px; padding: 0 9px; border-radius: 5px; gap: 6px; }
 .cmenu.native .cm-row.is-lit { background: var(--accent); color: var(--white); }
-.cmenu.native .cm-sep { margin: 5px 9px; background: rgba(var(--white-rgb), .12); }
+.cmenu.native .cm-sep { margin: 5px 9px; background: rgba(var(--overlay-rgb), .12); }
 
 /* ---- File icons (FileIconView: 16x16 box; Seti glyph in its color) ------------------------------------------ */
 .ficon { display: flex; flex: none; align-items: center; justify-content: center; width: 16px; height: 16px; overflow: visible; }
@@ -175,11 +357,11 @@ img.ficon { display: block; object-fit: contain; pointer-events: none; -webkit-u
 /* ---- icon buttons ---------------------------------------------------------------------------------------------- */
 .icon-btn {
   display: flex; flex: none; align-items: center; justify-content: center; padding: 0; margin: 0; border: 0; font: inherit;
-  color: rgba(var(--text-rgb), .6); background: rgba(var(--white-rgb), .06);
+  color: rgba(var(--text-rgb), .6); background: rgba(var(--overlay-rgb), .06);
   box-shadow: inset 0 0 0 1px var(--cv-line); border-radius: 5px;
 }
-.icon-btn:hover { color: rgba(var(--text-rgb), .9); background: rgba(var(--white-rgb), .12); }
-.icon-btn:active { background: rgba(var(--white-rgb), .18); }
+.icon-btn:hover { color: rgba(var(--text-rgb), .9); background: rgba(var(--overlay-rgb), .12); }
+.icon-btn:active { background: rgba(var(--overlay-rgb), .18); }
 .icon-btn.r4 { border-radius: 4px; }
 
 /* ---- Editor tab strip (EditorStageView / EditorTabsView): the center tab area of the workbench --------------- */
@@ -207,7 +389,8 @@ img.ficon { display: block; object-fit: contain; pointer-events: none; -webkit-u
 
 :root {
   /* ---- surfaces and text (the default skin's palette, ../css/tokens.css) */
-  --g-panel: #262624;                       /* tool windows, popups, dialogs */
+  --g-panel: #262624;                       /* tool windows */
+  --g-popup: var(--g-panel);                /* menus, popups, dialogs, balloons; the light skins lift it above the panel */
   --g-editor: #1e1e1d;                      /* diff, commit message, fields */
   --g-raised: #31312f;                      /* grouped fill, secondary button */
   --g-line: rgba(255, 255, 255, .08);       /* hairlines between panes */
@@ -226,8 +409,8 @@ img.ficon { display: block; object-fit: contain; pointer-events: none; -webkit-u
   --g-accent-line: rgba(76, 141, 255, .45);
   --g-link: #9fc6ff;
   --g-focus: #0a84ff;
-  --g-shadow: 0 18px 50px rgba(0, 0, 0, .5), 0 2px 8px rgba(0, 0, 0, .35);
-  --g-scrim: rgba(0, 0, 0, .42);
+  --g-shadow: 0 18px 50px rgba(var(--shadow-rgb), .5), 0 2px 8px rgba(var(--shadow-rgb), .35);
+  --g-scrim: rgba(var(--shadow-rgb), .42);
 
   /* ---- geometry */
   --g-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
@@ -294,6 +477,7 @@ img.ficon { display: block; object-fit: contain; pointer-events: none; -webkit-u
 
 :root[data-git-skin="intellij"] {
   --g-panel: #2b2d30;
+  --g-popup: var(--g-panel);
   --g-editor: #1e1f22;
   --g-raised: #393b40;
   --g-line: #1e1f22;
@@ -331,6 +515,147 @@ img.ficon { display: block; object-fit: contain; pointer-events: none; -webkit-u
   --g-current-branch-row: rgba(53, 116, 240, .09);
 }
 
+/* ---- light schemes: colours only; the family keeps its geometry and fonts ---- */
+
+/* IntelliJ Light: platform/platform-resources/src/themes/expUI/expUI_light.theme.json (Gray1-14, Blue1-13) and
+   expUI_lightScheme.xml (DIFF_*, FILESTATUS_*, VCS_ANNOTATIONS_*). */
+:root[data-git-light] {
+  --g-panel: #F7F8FA;                       /* ToolWindow.background (Gray13) */
+  --g-popup: #FFFFFF;                       /* Menu/Popup/dialog surface (Gray14) */
+  --g-editor: #FFFFFF;                      /* editor, commit message, fields */
+  --g-raised: #FFFFFF;                      /* grouped fill, secondary button */
+  --g-line: #EBECF0;                        /* Gray12 */
+  --g-line-strong: #DFE1E5;                 /* Gray11 */
+  --g-text: #000000;                        /* Gray1 */
+  --g-dim: #6C707E;                         /* Gray6 */
+  --g-muted: #818594;                       /* Gray7 */
+  --g-disabled: #A8ADBD;                    /* Gray8 */
+  --g-icon: #6C707E;
+  --g-hover: #EDF3FF;                       /* Blue12 */
+  --g-press: #D4E2FF;                       /* Blue11 */
+  --g-select: #D4E2FF;                      /* selectionBackground (Blue11) */
+  --g-select-idle: #DFE1E5;                 /* selectionInactiveBackground (Gray11) */
+  --g-accent: #3574F0;                      /* Blue4 */
+  --g-accent-soft: #EDF3FF;                 /* Blue12 */
+  --g-accent-line: #88ADF7;                 /* Blue8 */
+  --g-link: #315FBD;                        /* Link.activeForeground (Blue2) */
+  --g-focus: #3574F0;                       /* focusColor (Blue4) */
+  --g-shadow: 0 18px 50px rgba(0, 0, 0, .14), 0 2px 8px rgba(0, 0, 0, .10);
+  --g-scrim: rgba(0, 0, 0, .24);
+  --g-btn-primary-bg: #3369D6;              /* Blue3: Blue4 would be 4.28:1 with white text, below the spec's 4.5:1 */
+  --g-btn-primary-fg: #FFFFFF;
+  --g-btn-bg: #FFFFFF;
+  --g-btn-border: #C9CCD6;                  /* Gray9 */
+  --g-field-bg: #FFFFFF;
+  --g-field-border: #C9CCD6;
+  --g-check-border: #A8ADBD;
+
+  /* file status: FILESTATUS_* of the light scheme */
+  --g-modified: #0033B3;
+  --g-added: #067D17;
+  --g-deleted: #6C707E;
+  --g-unversioned: #B23247;
+  --g-conflict: #DE1B2E;
+  --g-ignored: #8C4F00;
+  --g-merged: #643CB8;
+  --g-dnd-row: #3573F026;                   /* DragAndDrop.rowBackground */
+  --g-dnd-border: #3574F0;                  /* DragAndDrop.borderColor */
+
+  /* diff blocks: DIFF_MODIFIED / DIFF_INSERTED / DIFF_DELETED / DIFF_CONFLICT backgrounds and stripes.
+     Only the full ("word") colours are given; the soft fill under changed words is the shared formula in
+     git-diff.css (40 % of the full colour over the editor). */
+  --g-diff-mod-word: #C2D8F2;
+  --g-diff-mod-stripe: #B6D2F2;
+  --g-diff-ins-word: #BEE6BE;
+  --g-diff-ins-stripe: #AADEAA;
+  --g-diff-del-word: #D6D6D6;
+  --g-diff-del-stripe: #C8C8C8;
+  --g-diff-conflict-word: #FFD5CC;
+  --g-diff-conflict-stripe: #FFC8BD;
+
+  /* ref labels and markers: GitLog.*IconColor of the light theme */
+  --g-ref-head: #A46704;                    /* Yellow1 */
+  --g-ref-local: #1F7536;                   /* Green2 */
+  --g-ref-remote: #834DF0;                  /* Purple4 */
+  --g-ref-tag: #6C707E;                     /* Gray6 */
+  --g-incoming: #3574F0;
+  --g-outgoing: #369650;
+  --g-favorite: #A46704;
+  --g-graph-default: #000000;
+  --g-current-branch-row: #EDF3FF;          /* VersionControl.Log.Commit.currentBranchBackground */
+  --g-info: #3574F0;
+  --g-ok: #208A3C;
+  --g-warn: #C27D04;
+  --g-error: #DB3B4B;
+}
+
+/* Default Light: the Default family's warm paper palette, with IntelliJ's light semantic colours. */
+:root[data-git-light]:not([data-git-skin="intellij"]) {
+  --g-panel: #F5F3EF;
+  --g-popup: #FBF9F6;
+  --g-editor: #FFFFFF;
+  --g-raised: #E9E6DF;
+  --g-line: #E6E2DA;
+  --g-line-strong: #D8D3C9;
+  --g-text: #1C1B19;
+  --g-dim: #6B6A66;
+  --g-muted: #7D7B75;
+  --g-disabled: #A6A39C;
+  --g-icon: #5E5C57;
+  --g-hover: rgba(28, 27, 25, .05);
+  --g-press: rgba(28, 27, 25, .09);
+  --g-select: rgba(10, 132, 255, .16);
+  --g-select-idle: rgba(28, 27, 25, .06);
+  --g-accent: #0A84FF;
+  --g-accent-soft: rgba(10, 132, 255, .12);
+  --g-accent-line: rgba(10, 132, 255, .45);
+  --g-link: #0066CC;
+  --g-focus: #0A84FF;
+  --g-shadow: 0 18px 50px rgba(28, 27, 25, .16), 0 2px 8px rgba(28, 27, 25, .10);
+  --g-scrim: rgba(28, 27, 25, .24);
+  --g-btn-primary-bg: #1C1B19;
+  --g-btn-primary-fg: #FFFFFF;
+  --g-btn-bg: #E9E6DF;
+  --g-btn-border: rgba(28, 27, 25, .12);
+  --g-field-bg: #FFFFFF;
+  --g-field-border: rgba(28, 27, 25, .14);
+  --g-check-border: rgba(28, 27, 25, .32);
+
+  /* the same IntelliJ light meanings */
+  --g-modified: #0033B3;
+  --g-added: #067D17;
+  --g-deleted: #6C707E;
+  --g-unversioned: #B23247;
+  --g-conflict: #DE1B2E;
+  --g-ignored: #8C4F00;
+  --g-merged: #643CB8;
+  --g-dnd-row: rgba(10, 132, 255, .16);
+  --g-dnd-border: #0A84FF;
+
+  --g-diff-mod-word: #C2D8F2;
+  --g-diff-mod-stripe: #B6D2F2;
+  --g-diff-ins-word: #BEE6BE;
+  --g-diff-ins-stripe: #AADEAA;
+  --g-diff-del-word: #D6D6D6;
+  --g-diff-del-stripe: #C8C8C8;
+  --g-diff-conflict-word: #FFD5CC;
+  --g-diff-conflict-stripe: #FFC8BD;
+
+  --g-ref-head: #A46704;
+  --g-ref-local: #1F7536;
+  --g-ref-remote: #834DF0;
+  --g-ref-tag: #6C707E;
+  --g-incoming: #0A84FF;
+  --g-outgoing: #1F8A4C;
+  --g-favorite: #A46704;
+  --g-graph-default: #1C1B19;
+  --g-current-branch-row: rgba(10, 132, 255, .08);
+  --g-info: #0A84FF;
+  --g-ok: #1F8A4C;
+  --g-warn: #C2410C;
+  --g-error: #D92D20;
+}
+
 /* ---------------------------------------------------------------- base */
 .g-root, .g-popup, .g-dialog, .g-balloons, .g-menu {
   font-family: var(--g-font);
@@ -354,9 +679,9 @@ img.ficon { display: block; object-fit: contain; pointer-events: none; -webkit-u
 .g-scroll { overflow: auto; min-height: 0; min-width: 0; }
 .g-root ::-webkit-scrollbar, .g-popup ::-webkit-scrollbar, .g-dialog ::-webkit-scrollbar { width: 10px; height: 10px; }
 .g-root ::-webkit-scrollbar-thumb, .g-popup ::-webkit-scrollbar-thumb, .g-dialog ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, .16); border-radius: 5px; border: 2px solid transparent; background-clip: content-box;
+  background: rgba(var(--overlay-rgb), .16); border-radius: 5px; border: 2px solid transparent; background-clip: content-box;
 }
-.g-root ::-webkit-scrollbar-thumb:hover, .g-dialog ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, .28); border: 2px solid transparent; background-clip: content-box; }
+.g-root ::-webkit-scrollbar-thumb:hover, .g-dialog ::-webkit-scrollbar-thumb:hover { background: rgba(var(--overlay-rgb), .28); border: 2px solid transparent; background-clip: content-box; }
 .g-root ::-webkit-scrollbar-corner, .g-dialog ::-webkit-scrollbar-corner { background: transparent; }
 
 /* ---------------------------------------------------------------- icons */
@@ -453,7 +778,7 @@ img.ficon { display: block; object-fit: contain; pointer-events: none; -webkit-u
 #g-layer > * { pointer-events: auto; }
 .g-popup {
   position: fixed; z-index: 910; max-height: calc(100% - 16px); display: flex; flex-direction: column;
-  background: var(--g-panel); border: 1px solid var(--g-line-strong); border-radius: var(--g-radius-popup); box-shadow: var(--g-shadow); overflow: hidden;
+  background: var(--g-popup); border: 1px solid var(--g-line-strong); border-radius: var(--g-radius-popup); box-shadow: var(--g-shadow); overflow: hidden;
 }
 .g-menu { padding: 5px; min-width: 200px; overflow: auto; }
 .g-menu-item {
@@ -473,7 +798,7 @@ img.ficon { display: block; object-fit: contain; pointer-events: none; -webkit-u
 .g-shade { position: fixed; inset: 0; z-index: 905; background: var(--g-scrim); display: flex; align-items: center; justify-content: center; padding: 24px; }
 .g-dialog {
   display: flex; flex-direction: column; min-width: 320px; max-width: 100%; max-height: 100%;
-  background: var(--g-panel); border: 1px solid var(--g-line-strong); border-radius: var(--g-radius-dialog); box-shadow: var(--g-shadow); overflow: hidden;
+  background: var(--g-popup); border: 1px solid var(--g-line-strong); border-radius: var(--g-radius-dialog); box-shadow: var(--g-shadow); overflow: hidden;
 }
 .g-dialog-title { display: flex; align-items: center; height: 40px; padding: 0 8px 0 16px; flex: none; font-weight: 600; border-bottom: 1px solid var(--g-line); }
 .g-dialog-title-text { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -553,8 +878,7 @@ img.ficon { display: block; object-fit: contain; pointer-events: none; -webkit-u
   pointer-events: auto; display: flex; align-items: flex-start; gap: 9px; padding: 11px 10px 11px 12px;
   background: var(--g-raised); border: 1px solid var(--g-line-strong); border-radius: 10px; box-shadow: var(--g-shadow);
   animation: g-balloon-in .18s ease-out;
-}
-.g-balloon.out { opacity: 0; transition: opacity .15s; }
+}.g-balloon.out { opacity: 0; transition: opacity .15s; }
 .g-balloon-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .g-balloon-title { font-weight: 600; overflow-wrap: anywhere; }
 .g-balloon-text { color: var(--g-dim); overflow-wrap: anywhere; line-height: 1.4; white-space: pre-line; max-height: 40vh; overflow: auto; }   /* lines of a text (file lists, git output) stay lines */
@@ -563,7 +887,7 @@ img.ficon { display: block; object-fit: contain; pointer-events: none; -webkit-u
 .g-balloon:hover .g-balloon-x, .g-balloon-x:focus-visible { opacity: 1; }
 .g-balloon-x:hover { background: var(--g-hover); }
 @keyframes g-balloon-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-:root[data-git-skin="intellij"] .g-balloon { border-radius: 8px; background: #393b40; }
+:root[data-git-skin="intellij"] .g-balloon { border-radius: 8px; }
 
 /* ---------------------------------------------------------------- splitters */
 .g-split { flex: none; position: relative; z-index: 2; background: var(--g-line); touch-action: none; }
@@ -724,7 +1048,7 @@ body { background: var(--g-panel); color: var(--g-text); overflow: hidden; }
 /* ---- Annotate's hover card (annotate.js; moved from frame.css) */
 .g-blame-tip {
   position: fixed; z-index: 915; max-width: 460px; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px;
-  background: var(--g-panel); border: 1px solid var(--g-line-strong); border-radius: 10px; box-shadow: var(--g-shadow); font-size: 12.5px;
+  background: var(--g-popup); border: 1px solid var(--g-line-strong); border-radius: 10px; box-shadow: var(--g-shadow); font-size: 12.5px;
 }
 .g-blame-tip .g-link { word-break: break-all; }
 .g-blame-tip-msg { margin-top: 7px; white-space: pre-wrap; overflow-wrap: anywhere; }
@@ -754,7 +1078,7 @@ body { background: var(--g-panel); color: var(--g-text); overflow: hidden; }
 .wp-fieldwrap { position: relative; flex: 1 1 0; min-width: 0; }
 .wp-suggest {
   position: absolute; left: 0; right: 0; top: 32px; z-index: 5; max-height: 260px; overflow: auto; padding: 4px;
-  background: var(--g-panel); border: 1px solid var(--g-line-strong); border-radius: var(--g-radius); box-shadow: var(--g-shadow);
+  background: var(--g-popup); border: 1px solid var(--g-line-strong); border-radius: var(--g-radius); box-shadow: var(--g-shadow);
 }
 .wp-item { display: flex; align-items: center; gap: 6px; width: 100%; height: 26px; padding: 0 8px; border: 0; border-radius: var(--g-radius); background: transparent; text-align: left; cursor: pointer; }
 .wp-item:hover, .wp-item.on { background: var(--g-select); }
@@ -1015,7 +1339,7 @@ body { background: var(--g-panel); color: var(--g-text); overflow: hidden; }
 .gl-suggest-item.on { background: var(--g-select); }
 .gl-suggest-item b { color: var(--g-link); font-weight: inherit; }
 .gl-period { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; }
-.gl-period input { color-scheme: dark; }
+.gl-period input { color-scheme: inherit; }
 .gl-period input.empty { color: var(--g-muted); }
 .gl-paths-tree { flex: 1 1 0; min-height: 220px; border: 1px solid var(--g-line-strong); border-radius: var(--g-field-radius); background: var(--g-editor); }
 
@@ -1176,7 +1500,7 @@ body:has(.wb-right:not([hidden])) .g-balloons { right: calc(var(--gc-right-edge,
   border: 1px solid var(--g-dnd-border); border-radius: 2px; }
 .gc-drag-label { position: fixed; z-index: 2001; pointer-events: none; display: flex; align-items: center; gap: 6px; max-width: 240px;
   padding: 2px 8px 2px 6px; border-radius: var(--g-radius); background: var(--g-raised); border: 1px solid var(--g-line-strong);
-  color: var(--g-text); font: var(--g-size)/20px var(--g-font); white-space: nowrap; box-shadow: 0 4px 12px rgba(0, 0, 0, .35); opacity: .92; }
+  color: var(--g-text); font: var(--g-size)/20px var(--g-font); white-space: nowrap; box-shadow: 0 4px 12px rgba(var(--shadow-rgb), .35); opacity: .92; }
 .gc-drag-label > span { overflow: hidden; text-overflow: ellipsis; }
 body.gc-dragging, body.gc-dragging * { cursor: default !important; user-select: none !important; -webkit-user-select: none !important; }
 body.gc-dragging.gc-no-drop, body.gc-dragging.gc-no-drop * { cursor: not-allowed !important; }
@@ -1319,6 +1643,66 @@ body.gc-dragging.gc-no-drop, body.gc-dragging.gc-no-drop * { cursor: not-allowed
   --gd-tok-heading-style: italic;
   --gd-tok-code: #6aab73;
   --gd-tok-doc: #5f826b;
+}
+
+/* ---- light schemes: colours only (fonts, sizes and row heights stay the family's) ---- */
+
+/* IntelliJ Light: expUI_lightScheme.xml (TEXT, LINE_NUMBERS_COLOR, LINE_NUMBER_ON_CARET_ROW_COLOR, DIFF_*,
+   DEFAULT_* syntax attributes). */
+:root[data-git-light] {
+  --gd-text: #000000;
+  --gd-num: #AEB3C2;                        /* LINE_NUMBERS_COLOR */
+  --gd-num-cur: #767A8A;                    /* LINE_NUMBER_ON_CARET_ROW_COLOR */
+  --gd-rule: var(--g-line);
+  --gd-wave: rgba(0, 0, 0, .20);            /* DIFF_SEPARATOR_WAVE over white */
+  --gd-bar-bg: #F7F8FA;
+  --gd-bar-line: #DFE1E5;
+  --gd-seg-line: #C9CCD6;
+  --gd-note-bg: #F7F8FA;
+  /* IntelliJ Light scheme */
+  --gd-tok-keyword: #0033B3;
+  --gd-tok-string: #067D17;
+  --gd-tok-number: #1750EB;
+  --gd-tok-comment: #8C8C8C;
+  --gd-tok-function: #00627A;
+  --gd-tok-type: #000000;
+  --gd-tok-variable: #871094;
+  --gd-tok-meta: #9E880D;
+  --gd-tok-tag: #0033B3;
+  --gd-tok-attr: #174AD4;
+  --gd-tok-selector: #174AD4;
+  --gd-tok-heading: #871094;
+  --gd-tok-heading-style: italic;
+  --gd-tok-code: #067D17;
+  --gd-tok-doc: #8C8C8C;
+}
+
+/* Default Light: VS Code Light+ tokens on the warm surfaces. */
+:root[data-git-light]:not([data-git-skin="intellij"]) {
+  --gd-text: #000000;
+  --gd-num: #237893;
+  --gd-num-cur: #0B216F;
+  --gd-wave: rgba(28, 27, 25, .20);
+  --gd-bar-bg: #F5F3EF;
+  --gd-bar-line: #E6E2DA;
+  --gd-seg-line: #D8D3C9;
+  --gd-note-bg: #E9E6DF;
+  /* VS Code Light+ */
+  --gd-tok-keyword: #0000FF;
+  --gd-tok-string: #A31515;
+  --gd-tok-number: #098658;
+  --gd-tok-comment: #008000;
+  --gd-tok-function: #795E26;
+  --gd-tok-type: #267F99;
+  --gd-tok-variable: #001080;
+  --gd-tok-meta: #AF00DB;
+  --gd-tok-tag: #800000;
+  --gd-tok-attr: #FF0000;
+  --gd-tok-selector: #800000;
+  --gd-tok-heading: #800000;
+  --gd-tok-heading-style: normal;
+  --gd-tok-code: #A31515;
+  --gd-tok-doc: #008000;
 }
 
 .g-diff { position: absolute; inset: 0; display: flex; flex-direction: column; background: var(--gd-bg); outline: none; overflow: hidden; min-width: 0; }
@@ -1483,6 +1867,26 @@ body.gc-dragging.gc-no-drop, body.gc-dragging.gc-no-drop * { cursor: not-allowed
 }
 :root[data-git-skin="intellij"] { --fv-cur-row: #26282e; }   /* CARET_ROW_COLOR */
 
+/* ---- light schemes ---- */
+/* IntelliJ Light: ADDED/MODIFIED/DELETED_LINES_COLOR and VCS_ANNOTATIONS_COLOR_1..5 of expUI_lightScheme.xml. */
+:root[data-git-light] {
+  --fv-mark-add: #7FC784;
+  --fv-mark-mod: #88ADF7;
+  --fv-mark-del: #767A8A;
+  --fv-ann-1: #A1BEF7;
+  --fv-ann-2: #C9DAFB;
+  --fv-ann-3: #DEE8FC;
+  --fv-ann-4: #EDF2FA;
+  --fv-ann-5: #F7F8FA;
+  --fv-ann-text: #5A5D6B;                   /* ANNOTATIONS_COLOR */
+  --fv-ann-last: #000000;                   /* ANNOTATIONS_LAST_COMMIT_COLOR */
+  --fv-cur-row: #F5F8FE;                    /* CARET_ROW_COLOR */
+}
+:root[data-git-light]:not([data-git-skin="intellij"]) {
+  --fv-ann-text: #6B6A66;
+  --fv-cur-row: #F7F5F1;
+}
+
 /* ---------------------------------------------------------------- the file view */
 .fv-root { position: absolute; inset: 0; display: flex; flex-direction: column; background: var(--gd-bg); color: var(--gd-text); --fv-line: var(--gd-line); outline: none; }
 .fv-body { flex: 1 1 0; min-height: 0; display: flex; }
@@ -1526,7 +1930,7 @@ body.gc-dragging.gc-no-drop, body.gc-dragging.gc-no-drop * { cursor: not-allowed
 .fv-blame.same { color: var(--g-text); box-shadow: inset 2px 0 0 var(--g-accent); }
 .fv-tip {
   position: fixed; z-index: 60; max-width: 460px; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px;
-  background: var(--g-panel); border: 1px solid var(--g-line-strong); border-radius: var(--g-radius-popup); box-shadow: var(--g-shadow);
+  background: var(--g-popup); border: 1px solid var(--g-line-strong); border-radius: var(--g-radius-popup); box-shadow: var(--g-shadow);
 }
 .fv-tip-msg { margin-top: 6px; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 220px; overflow: auto; }
 .fv-tip .g-mono { font-size: 12px; }
@@ -1588,6 +1992,18 @@ body.gc-dragging.gc-no-drop, body.gc-dragging.gc-no-drop * { cursor: not-allowed
   --gb-widget-h: 30px;
   --gb-popup-rule: #43454a;
   --gb-split-rule: #83acfc;
+}
+/* ---- light schemes: the same IntelliJ operation colours, on a light separator ---- */
+:root[data-git-light] {
+  --gb-op-go: #369650;
+  --gb-op-stop: #DB3B4B;
+  --gb-op-fg: #ffffff;
+  --gb-popup-rule: #EBECF0;
+  --gb-split-rule: rgba(0, 0, 0, .14);
+}
+:root[data-git-light]:not([data-git-skin="intellij"]) {
+  --gb-popup-rule: #E6E2DA;
+  --gb-split-rule: rgba(28, 27, 25, .16);
 }
 
 /* ---------------------------------------------------------------- widget (in the file panel's 40 px header) */
@@ -1811,6 +2227,56 @@ body.gc-dragging.gc-no-drop, body.gc-dragging.gc-no-drop * { cursor: not-allowed
   --gm-syn-attr: #c77dbb;
   --gm-syn-type: #bcbec4;
   --gm-syn-meta: #b3ae60;
+}
+
+/* ---- light schemes: the merge tool's DIFF_* blocks and syntax ---- */
+/* IntelliJ Light: expUI_lightScheme.xml DIFF_* and DEFAULT_* syntax attributes. */
+:root[data-git-light] {
+  --gm-mod: #C2D8F2;
+  --gm-ins: #BEE6BE;
+  --gm-del: #D6D6D6;
+  --gm-conflict: #FFD5CC;
+  --gm-mod-stripe: #B6D2F2;
+  --gm-ins-stripe: #AADEAA;
+  --gm-del-stripe: #C8C8C8;
+  --gm-conflict-stripe: #FFC8BD;
+  --gm-line-no: #AEB3C2;
+  --gm-fold: rgba(0, 0, 0, .24);
+  --gm-hint-bg: #E3F7E7;
+  --gm-hint-line: #AFDBB8;
+  --gm-unresolved: #DB3B4B;
+  --gm-resolved: #208A3C;
+  --gm-badge: rgba(0, 0, 0, .08);
+  --gm-badge-on: #D4E2FF;
+  --gm-badge-on-text: #315FBD;
+  --gm-chip: #FFFFFF;
+  --gm-node: #818594;
+  --gm-reworded: #315FBD;
+  --gm-syn-keyword: #0033B3;
+  --gm-syn-string: #067D17;
+  --gm-syn-comment: #8C8C8C;
+  --gm-syn-number: #1750EB;
+  --gm-syn-name: #00627A;
+  --gm-syn-attr: #871094;
+  --gm-syn-type: #000000;
+  --gm-syn-meta: #9E880D;
+}
+:root[data-git-light]:not([data-git-skin="intellij"]) {
+  --gm-line-no: #A6A39C;
+  --gm-fold: rgba(28, 27, 25, .24);
+  --gm-badge: rgba(28, 27, 25, .07);
+  --gm-badge-on: rgba(10, 132, 255, .16);
+  --gm-badge-on-text: #0066CC;
+  --gm-chip: #E9E6DF;
+  --gm-node: #7D7B75;
+  --gm-syn-keyword: #0000FF;
+  --gm-syn-string: #A31515;
+  --gm-syn-comment: #008000;
+  --gm-syn-number: #098658;
+  --gm-syn-name: #795E26;
+  --gm-syn-attr: #001080;
+  --gm-syn-type: #267F99;
+  --gm-syn-meta: #AF00DB;
 }
 
 /* ================================================================ Merge / Rebase: the command line */

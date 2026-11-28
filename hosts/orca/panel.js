@@ -86,6 +86,10 @@
     const q = new URLSearchParams();
     if (view) q.set('view', view);
     q.set('repo', repo);
+    // A page opened with an appearance choice keeps it: the panel's own URL is rebuilt here, and dropping `theme`
+    // would silently switch the page back to following Orca (`workbench.js` reads `?theme=` at boot).
+    const theme = new URLSearchParams(location.search).get('theme');
+    if (theme) q.set('theme', theme);
     const want = '?' + q.toString();
     try { history.replaceState(history.state, '', location.pathname + want); } catch (e) { /* Orca's frame may refuse */ }
     if (location.search === want) { search = null; return; }
